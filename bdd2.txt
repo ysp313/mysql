@@ -1,0 +1,51 @@
+
+***Récupère tous les champs pour les sorciers nés entre 1975 et 1985***
+
+                    mysql> select id from wizard
+                        -> where birthday between '1975-01-01' and '1985-01-01';
+                    +----+
+                    | id |
+                    +----+
+                    |  1 |
+                    |  2 |
+                    |  4 |
+                    |  5 |
+                    |  6 |
+                    |  7 |
+                    | 10 |
+                    | 14 |
+                    +----+
+                    8 rows in set (0,00 sec)
+                                        
+***Le prénom uniquement des sorciers dont le prénom commence par la lettre ‘H’***
+
+                    mysql> select firstname from wizard
+                        -> where firstname like 'H%';
+                    +-----------+
+                    | firstname |
+                    +-----------+
+                    | harry     |
+                    | hermione  |
+                    +-----------+
+                    2 rows in set (0,00 sec)
+                    
+***Les prénoms et noms de tous les membres de la famille ‘Potter’, classés par ordre de prénom***
+
+                    mysql> select firstname,lastname from wizard where lastname = 'potter' order by firstname;
+                    +-----------+----------+
+                    | firstname | lastname |
+                    +-----------+----------+
+                    | harry     | potter   |
+                    | lily      | potter   |
+                    +-----------+----------+
+                    2 rows in set (0,00 sec)
+
+***Le prénom, nom et date de naissance du plus vieux sorcier (doit fonctionner quelque soit le contenu de la table)***
+                    mysql> select firstname, lastname, birthday from wizard
+                        -> order by birthday limit 1;
+                    +-----------+------------+------------+
+                    | firstname | lastname   | birthday   |
+                    +-----------+------------+------------+
+                    | albus     | dumbledore | 1881-07-01 |
+                    +-----------+------------+------------+
+                    1 row in set (0,00 sec)
