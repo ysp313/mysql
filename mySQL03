@@ -1,0 +1,88 @@
+*** 
+Insère dans la table school les données suivantes : 
+***
+
+mysql> INSERT INTO school(name, country, capacity) VALUES ('Beauxbatons Academy of Magic', 'France', 550);
+Query OK, 1 row affected (0,00 sec)
+
+mysql> select * from school;
++----+------------------------------+----------+---------+
+| id | name                         | capacity | country |
++----+------------------------------+----------+---------+
+|  1 | Beauxbatons Academy of Magic |      550 | France  |
++----+------------------------------+----------+---------+
+1 row in set (0,00 sec)
+
+mysql> INSERT INTO school(name, country, capacity) 
+    -> VALUES ('Castelobruxo', 'Brazil', 380), 
+    -> ('Durmstrang Institute', 'Norway', 570), 
+    -> ('Hogwarts School of Witchcraft and Wizardry', 'United Kingdom', 450), 
+    -> ('Ilvermorny School of Witchcraft and Wizardry', 'USA', 300), 
+    -> ('Koldovstoretz', 'Russia', 125), 
+    -> ('Mahoutokoro School of Magic', 'Japan', 800), 
+    -> ('Uagadou School of Magic', 'Uganda', 350)
+    -> ;
+Query OK, 7 rows affected (0,01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from school;
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  1 | Beauxbatons Academy of Magic                 |      550 | France         |
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Norway         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
+|  7 | Mahoutokoro School of Magic                  |      800 | Japan          |
+|  8 | Uagadou School of Magic                      |      350 | Uganda         |
++----+----------------------------------------------+----------+----------------+
+8 rows in set (0,01 sec)
+
+--------------------------------------------------------------------------------------
+***
+“Durmstrang Institute” est en réalité en Suède (Sweden), modifie son pays.
+***
+mysql> update school
+    -> set country='Sweden' 
+    -> where id=3;
+Query OK, 1 row affected (0,01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------------------------------------------------------------------------------
+***
+“Mahoutokoro School of Magic” passe à une capacité de 700
+**
+
+mysql> update school
+    -> set capacity=700 
+    -> where id=7;
+Query OK, 1 row affected (0,01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--------------------------------------------------------------------------------------
+***
+Supprime en une seule requête toutes les écoles comportant “Magic” dans leur nom 
+(il y en a 3). Tu peux t’aider du mot clé LIKE.
+***
+mysql> delete from school where name like '%Magic%';
+Query OK, 3 rows affected (0,11 sec)
+
+--------------------------------------------------------------------------------------
+***
+Ensuite, affiche via une requête SELECT toutes les données de la table school 
+et colle également le résultat dans le Gist.
+***
+mysql> select * from school;
++----+----------------------------------------------+----------+----------------+
+| id | name                                         | capacity | country        |
++----+----------------------------------------------+----------+----------------+
+|  2 | Castelobruxo                                 |      380 | Brazil         |
+|  3 | Durmstrang Institute                         |      570 | Sweden         |
+|  4 | Hogwarts School of Witchcraft and Wizardry   |      450 | United Kingdom |
+|  5 | Ilvermorny School of Witchcraft and Wizardry |      300 | USA            |
+|  6 | Koldovstoretz                                |      125 | Russia         |
++----+----------------------------------------------+----------+----------------+
+5 rows in set (0,01 sec)
+
