@@ -124,4 +124,18 @@ mysql> select wizard.firstname, wizard.lastname from player join wizard on wizar
 *****
 Retourne la liste de tous les sorciers qui ne pratiquent pas le quidditch.
 *****
-
+select * from wizard left join player on player.id=wizard.id where player.role is null;
++----+-----------+----------+------+-----------+---------+------+-----------------+
+| id | firstname | lastname | id   | wizard_id | team_id | role | enrollment_date |
++----+-----------+----------+------+-----------+---------+------+-----------------+
+|  9 | Terry     | Boot     | NULL |      NULL |    NULL | NULL | NULL            |
+| 15 | Crabbe    |          | NULL |      NULL |    NULL | NULL | NULL            |
+| 45 | Remus     | Lupin    | NULL |      NULL |    NULL | NULL | NULL            |
+| 53 | Padma     | Patil    | NULL |      NULL |    NULL | NULL | NULL            |
+| 54 | Parvati   | Patil    | NULL |      NULL |    NULL | NULL | NULL            |
+| 63 | Demelza   | Robins   | NULL |      NULL |    NULL | NULL | NULL            |
+| 65 | Horace    | Slughorn | NULL |      NULL |    NULL | NULL | NULL            |
+| 80 | Charles   | Weasley  | NULL |      NULL |    NULL | NULL | NULL            |
+| 84 | Molly     | Weasley  | NULL |      NULL |    NULL | NULL | NULL            |
++----+-----------+----------+------+-----------+---------+------+-----------------+
+9 rows in set (0,00 sec)
